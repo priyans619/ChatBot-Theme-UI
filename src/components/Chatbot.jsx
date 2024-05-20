@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "./Theme";
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState([
+  const initialMessages = [
     "Hi there!",
     "I'm Wysa - an AI chatbot built by therapists.",
     "I'm here to understand your concerns and connect you with the best resources available to support you.",
     "How can I help you?"
-  ]);
+  ];
 
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const { theme, cycleTheme } = useTheme();
+
+  // Function for message delay
+  useEffect(() => {
+    let isMounted = true;  
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const loadMessages = async () => {
+      for (let i = 0; i < initialMessages.length; i++) {
+        await delay(700); // 1 sec 
+        if (isMounted) {
+          setMessages(currentMessages => [...currentMessages, initialMessages[i]]);
+        }
+      }
+    };
+    loadMessages();
+
+    return () => {
+      isMounted = false; 
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
