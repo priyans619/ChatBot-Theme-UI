@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
-  
+    "Hi there!",
+    "I'm Wysa - an AI chatbot built by therapists.",
+    "I'm here to understand your concerns and connect you with the best resources available to support you.",
+    "How can I help you?"
   ]);
 
   const [input, setInput] = useState("");
