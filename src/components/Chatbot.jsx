@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "./Theme";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -9,6 +10,7 @@ const Chatbot = () => {
   ]);
 
   const [input, setInput] = useState("");
+  const { theme, cycleTheme } = useTheme();
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -23,15 +25,15 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-300 py-12 px-4 sm:px-6 lg:px-8">
+    <div className={`min-h-screen flex flex-col items-center justify-center ${theme.background} py-12 px-4 sm:px-6 lg:px-8`}>
       <div className="max-w-md w-full space-y-8">
         <div className="">
-          <h2 className="text-2xl font-bold mb-6">Wysa Chatbot</h2>
-          <div className="space-y-6 ">
+          <h2 className="text-2xl font-bold mb-6">Chatbot</h2>
+          <div className="space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
-                className="inline-block px-5 py-4 bg-indigo-100 rounded-lg"
+                className={`inline-block px-5 py-4 ${theme.bubble} rounded-lg`}
                 style={{ maxWidth: "100%", wordWrap: "break-word" }}
               >
                 {message}
@@ -49,11 +51,17 @@ const Chatbot = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Send
           </button>
         </form>
+        <button
+          onClick={cycleTheme}
+          className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        >
+          Change Theme
+        </button>
       </div>
     </div>
   );
