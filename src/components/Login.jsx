@@ -9,6 +9,22 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username === demoCredentials.username && password === demoCredentials.password) {
+      navigate("/chatbot");
+    } else {
+      setError("Invalid username or password");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
