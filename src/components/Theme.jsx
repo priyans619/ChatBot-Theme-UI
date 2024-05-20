@@ -1,6 +1,11 @@
 import React, { createContext, useState, useContext } from "react";
 
-const themes = [];
+const themes = [
+  { background: "bg-blue-300", bubble: "bg-indigo-100" },
+  { background: "bg-green-300", bubble: "bg-green-100" },
+  { background: "bg-yellow-300", bubble: "bg-yellow-100" },
+  { background: "bg-red-300", bubble: "bg-red-100" },
+];
 
 const ThemeContext = createContext();
 
