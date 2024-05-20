@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+const demoCredentials = {
+  username: "demo",
+  password: "pass",
+};
 
 const Login = () => {
   const [username, setUsername] = useState("");
